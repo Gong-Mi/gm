@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- 地址栏 (可选，如果你想手动输入URL) -->
+    <EditText
+        android:id="@+id/addressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter URL"
+        android:imeOptions="actionGo"
+        android:inputType="textUri"
+        android:singleLine="true"/>
+
+    <!-- 网页显示区域 -->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/> <!-- 占据剩余空间 -->
+
+    <!-- 虚拟键盘区域 -->
+    <LinearLayout
+        android:id="@+id/virtualKeyboardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="#f0f0f0">
+
+        <!-- 示例按键行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button android:id="@+id/btnUp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="上"/>
+        </LinearLayout>
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button android:id="@+id/btnLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="左"/>
+            <Button android:id="@+id/btnDown" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="下"/>
+            <Button android:id="@+id/btnRight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="右"/>
+         </LinearLayout>
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button android:id="@+id/btnSpace" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Space"/>
+            <Button android:id="@+id/btnZ" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Z"/>
+            <Button android:id="@+id/btnX" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="X"/>
+             <!-- 添加你的游戏需要的其他按键 -->
+         </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
