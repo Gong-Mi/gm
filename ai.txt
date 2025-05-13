@@ -1,0 +1,149 @@
+好的，为你准备一份 README.md 文件作为项目介绍，以及一份给下一次 AI 交互的提示词。
+
+这两个文件的目的是帮助你自己、未来的协作者或下一次的 AI 更好地理解这个项目的目的、当前状态和接下来的任务。
+
+1. README.md 文件内容
+
+这个文件应该放在你 GitHub 仓库的根目录下 (gm/README.md)。使用 Markdown 格式。
+
+# gm - Game Keyboard WebView Android App
+
+## 项目简介
+
+这是一个实验性的 Android 应用程序，旨在为特定的网页游戏提供一个自定义的屏幕虚拟键盘。项目的核心目的是解决在没有连接实体键盘的 Android 设备上，无法通过常规方式（如系统自带软键盘）向依赖实体键盘输入的网页游戏发送控制命令的问题。
+
+应用通过嵌入 Android 的 `WebView` 组件加载网页游戏，并在界面底部显示一个自定义的虚拟键盘。通过点击这些虚拟按键，应用试图向网页注入 JavaScript 代码来模拟实体键盘的按键事件（如 `keydown`, `keyup`），从而控制游戏。
+
+## 功能特性
+
+*   使用 `WebView` 加载指定或用户输入的网页 URL。
+*   自定义设计的屏幕虚拟键盘布局（目前包含示例按键）。
+*   初步实现（骨架代码）虚拟按键点击事件处理。
+*   初步实现（概念性 placeholder）通过 JavaScript 注入模拟按键事件。
+*   配置了 GitHub Actions 工作流程，在代码提交时自动构建 debug APK。
+
+## 当前状态
+
+这是项目的初始提交，包含了标准的 Android Studio 项目结构、基础的布局文件 (`activity_main.xml`) 和 `MainActivity` 的骨架代码。
+
+*   `WebView` 的初始化和 URL 加载已基本设置。
+*   虚拟键盘的 UI 元素已在布局中定义。
+*   虚拟按键的点击监听器已连接到占位符方法。
+*   核心的按键事件模拟逻辑 (`simulateKeyPress` 方法中的 JavaScript 注入部分) 仍是概念性的，需要进一步的实现、测试和调试，以确保能够可靠地被目标游戏网页接收和解释。
+
+项目的 GitHub Actions 工作流程已配置完成，每次 push 到 main 分支都会尝试构建 debug APK。
+
+## 如何构建和运行
+
+### 前提条件
+
+*   安装 Android Studio
+*   安装 Java Development Kit (JDK)
+*   安装 Android SDK
+*   一台 Android 设备或模拟器
+
+### 获取代码
+
+克隆本仓库到本地：
+
+```bash
+git clone git@github.com:Gong-Mi/gm.git
+# 或使用 HTTPS:
+# git clone https://github.com/Gong-Mi/gm.git
+
+在 Android Studio 中构建
+
+使用 Android Studio 打开克隆到本地的项目文件夹 (gm)。
+
+等待 Gradle 同步完成。
+
+连接 Android 设备或启动模拟器。
+
+在 Android Studio 中，选择 Run -> Run 'app'，或构建 APK (Build -> Build Bundle(s) / APK(s) -> Build APK(s))。
+
+使用 GitHub Actions 构建的 APK
+
+每次成功推送到仓库后，GitHub Actions 会自动构建 debug APK。
+
+访问本仓库的 GitHub 页面。
+
+点击顶部的 "Actions" 标签页。
+
+选择最近一个成功的 "Android Build" 工作流程运行。
+
+在页面底部的 "Artifacts" 部分，下载 app-debug-apk 文件。
+
+将 APK 文件传输到你的 Android 设备并安装（可能需要允许从未知来源安装应用）。
+
+工作原理概述
+
+应用启动后，会加载目标网页游戏到 WebView。底部的虚拟键盘按钮通过点击事件触发 MainActivity 中的方法。这个方法会构建一段 JavaScript 代码，这段代码在网页环境中运行时，会创建一个模拟的 KeyboardEvent 对象，并尝试将其分发（dispatch）到网页的合适元素（如 document.body 或 window），从而模拟用户按下了实体键盘上的某个键。
+
+待办事项和挑战
+
+完善 simulateKeyPress 方法中的 JavaScript 注入逻辑，使其能够可靠地模拟 keydown 和 keyup 事件。
+
+根据目标游戏的实际按键需求，调整虚拟键盘的布局和模拟的按键代码。
+
+处理 WebView 中焦点切换的问题，确保按键输入能够发送到网页内的表单输入框（如果游戏有输入框）。
+
+考虑更精确的事件模拟，例如按键长按和事件序列。
+
+优化 UI 布局，使其在不同屏幕尺寸和方向上表现良好。
+
+添加地址栏 URL 输入和导航功能（如果需要）。
+
+许可证
+
+[Optional: Add license information here, e.g., MIT, Apache 2.0]
+
+---
+
+### 2. 给下一次 AI 的提示词
+
+这个提示词不是一个文件，而是你在下一次与 AI 交互时，可以复制粘贴提供给 AI 的背景信息。
+
+```markdown
+你好，这是我项目的当前状态和背景信息，以便你能更好地提供帮助：
+
+**项目名称:** gm - Game Keyboard WebView Android App
+
+**项目目标:** 开发一个 Android 应用，内嵌 WebView 加载特定网页游戏，并通过自定义虚拟键盘模拟实体键盘按键输入，解决在没有物理键盘的 Android 设备上玩这类游戏的问题。
+
+**当前项目状态:**
+1.  **仓库:** 项目代码已在 GitHub 仓库 `Gong-Mi/gm` ([https://github.com/Gong-Mi/gm](https://github.com/Gong-Mi/gm)) 进行初始提交。
+2.  **结构:** 包含了标准的 Android Studio 项目结构，Gradle 配置，`AndroidManifest.xml`。
+3.  **UI:** 布局文件 `activity_main.xml` 定义了一个包含 `WebView` 和一个初步的虚拟键盘区域（带有一些示例按钮）。
+4.  **代码:** `MainActivity.java` 包含了加载网页的逻辑（目标 URL 需要在代码中指定或从地址栏获取），获取 UI 元素实例的代码，以及一个用于响应虚拟按键点击并尝试通过 `webView.evaluateJavascript()` 注入 JavaScript 来模拟按键事件的骨架方法 `simulateKeyPress(key, keyCode, code)`。
+5.  **自动化:** 配置了 GitHub Actions (`.github/workflows/android_build.yml`)，可以在每次 push 后自动构建 debug APK 作为 artifact。
+
+**已完成的步骤:**
+*   本地 Git 初始化。
+*   将项目文件添加到 Git。
+*   进行初始提交。
+*   在 GitHub 创建了新的空仓库。
+*   配置了本地仓库的远程地址为 GitHub 仓库的 SSH URL。
+*   通过 `git push -u origin master:main` 成功将本地 master 分支的初始提交推送到远程仓库的 main 分支。
+*   解决了 `dubious ownership` 和 `src refspec main does not match any` 等 Git 推送过程中的错误。
+
+**核心待解决问题 / 下一步的需求:**
+目前最大的技术挑战在于 `MainActivity.java` 中的 `simulateKeyPress` 方法。需要完善其中的 JavaScript 代码，使其能够：
+1.  准确地创建和分发 `KeyboardEvent` 对象（考虑 `keydown`, `keyup` 事件，以及 `key`, `keyCode`, `code` 等属性）。
+2.  确保注入的 JavaScript 能够可靠地在目标游戏网页的上下文中执行，并且模拟的事件能够被游戏逻辑正确捕获和响应。
+3.  如果游戏通过监听特定的元素（如 canvas）而不是全局 `document.body` 或 `window` 来处理按键，需要考虑如何将事件分发到正确的元素。
+
+**下一次可能需要你帮助的方向:**
+*   提供更健壮的 JavaScript 代码来模拟按键事件，并说明如何根据游戏需求调整参数。
+*   指导如何调试 WebView 中注入的 JavaScript 代码（如果 Android Studio 支持 WebView 远程调试的话）。
+*   讨论如何处理按键的按下和抬起状态（例如，长按虚拟按键模拟长按实体键）。
+*   根据需要扩展虚拟键盘布局和对应的模拟逻辑。
+*   任何与在 Android WebView 中可靠模拟用户输入相关的技术建议。
+
+我现在已经成功将基础代码推送到 GitHub 并设置了自动化构建。下一步需要专注于实现核心的键盘模拟功能。请根据以上信息准备好提供帮助。
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+IGNORE_WHEN_COPYING_END
+
+你可以根据实际情况调整上面的 GitHub 用户名、仓库名、具体的虚拟按键等细节。将 README.md 文件添加到你的项目根目录，并将给 AI 的提示词保存在一个地方，下次提问时使用。
